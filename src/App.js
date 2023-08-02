@@ -58,7 +58,7 @@ function App() {
         <ul>
         {items.map((item, index) => (
           <li key={index}>
-            {item.sense}
+            {item.uns}
           </li>
         ))}
       </ul>
@@ -98,7 +98,7 @@ function App() {
             </button>
         </div>
       <h4 className='text-uppercase'>{userWord}</h4>
-      <span style={{width: '20%'}}>{results}</span>
+      <span>{results}</span>
       </div>
 
     </div>
