@@ -14,10 +14,10 @@ function App() {
 
   useEffect(() => {
     if(userWord !== ''){
-      const apiKey = '0478b4ca-8e6d-4800-b8a1-1e7170815716';
-      //const apiURL = 'https://www.dictionaryapi.com/api/v3/references/thesaurus/json/umpire?key='+apiKey;     
-      //const apiURL = 'https://www.dictionaryapi.com/api/v3/references/thesaurus/json/'+userWord+'?key='+apiKey;
-      const apiURL = 'https://www.dictionaryapi.com/api/v3/references/thesaurus/json/'.concat(userWord,'?key=',apiKey);
+      const apiKey = 'a38b9950-2c3e-446c-94bd-02c7c25cbf22';
+      //const apiURL = 'https://www.dictionaryapi.com/api/v3/references/collegiate/json/voluminous?key='+apiKey;     
+      //const apiURL = 'https://www.dictionaryapi.com/api/v3/references/collegiate/json/'+userWord+'?key='+apiKey;
+      const apiURL = 'https://www.dictionaryapi.com/api/v3/references/collegiate/json/'.concat(userWord,'?key=',apiKey);
       //console.log('apiURL;', apiURL);
       
       fetch(apiURL)
@@ -36,14 +36,44 @@ function App() {
 
   }, [userWord])
 
-  let text = '';
+  let results = '';
   if (error) {
-    text =  'Error:'+error.message;
+    results =  <div>Error: {error.message}</div>;
   } else if (!isLoaded) {
-    text = 'Enter your word above';
+    results = <div>{userWord === ''? 'Enter a word above and click "Get Definition"' : 'Loading...'}</div>;
   } else {
     console.log('items:', items);
-    text = <div>{items[0].shortdef[0]}</div>;
+    results = (
+      <>
+        <h6>Definition(s)</h6>
+        <ul>
+        {items.map((item, index) => (
+          <li key={index}>
+            {item.shortdef}
+          </li>
+        ))}
+      </ul>
+      <h6>Usage Notes</h6>
+      {/** https://www.dictionaryapi.com/products/json#sec-2.uns */}
+        <ul>
+        {items.map((item, index) => (
+          <li key={index}>
+            {item.sense}
+          </li>
+        ))}
+      </ul>
+      <h6>Usage Discussion</h6>
+      {/** https://www.dictionaryapi.com/products/json#sec-2.usages  */}
+        <ul>
+        {items.map((item, index) => (
+          <li key={index}>
+            {item.usages}
+          </li>
+        ))}
+      </ul>
+      </>
+
+    );
   }
 
   return (
@@ -53,7 +83,7 @@ function App() {
         <br />
         <h1 className="text-body-emphasis">Dictionary</h1>
         <p className="col-lg-8 mx-auto fs-5 text-muted">
-          This react app allows you to enter a word and it will show you the definition and the example usage. Go ahead and try it!
+          This dictionary application allows you to enter a word and it will show you the definition and the example usage. Go ahead and try it!
         </p>
         <div className="bd-example">
       <form>
@@ -61,15 +91,16 @@ function App() {
           <input type="text" className="form-control d-inline-flex align-items-center" id="userInputWord" aria-describedby="emailHelp" placeholder='Type a word here to get the definition'/>          
         </div>       
       </form>
-      <h4>{userWord}</h4>
-      <span>{text}</span>
-      </div>
-        <br />
+      <br />
         <div className="d-inline-flex gap-2 mb-5">
             <button className="d-inline-flex align-items-center btn btn-primary btn-lg px-4 rounded-pill" type="button" onClick={() => setUserWord(document.getElementById('userInputWord').value)}>
                 Get definition
             </button>
         </div>
+      <h4 className='text-uppercase'>{userWord}</h4>
+      <span style={{width: '20%'}}>{results}</span>
+      </div>
+
     </div>
 </div>
 );
