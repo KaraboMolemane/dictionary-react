@@ -6,6 +6,7 @@ import { faBook } from '@fortawesome/free-solid-svg-icons';
 
 
 function App() {
+  //declare state(s)
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
@@ -15,11 +16,9 @@ function App() {
   useEffect(() => {
     if(userWord !== ''){
       const apiKey = 'a38b9950-2c3e-446c-94bd-02c7c25cbf22';
-      //const apiURL = 'https://www.dictionaryapi.com/api/v3/references/collegiate/json/voluminous?key='+apiKey;     
-      //const apiURL = 'https://www.dictionaryapi.com/api/v3/references/collegiate/json/'+userWord+'?key='+apiKey;
       const apiURL = 'https://www.dictionaryapi.com/api/v3/references/collegiate/json/'.concat(userWord,'?key=',apiKey);
-      //console.log('apiURL;', apiURL);
-      
+
+      //Do the API call
       fetch(apiURL)
         .then(res => res.json())
         .then(
@@ -42,35 +41,22 @@ function App() {
   } else if (!isLoaded) {
     results = <div>{userWord === ''? 'Enter a word above and click "Get Definition"' : 'Loading...'}</div>;
   } else {
+    //Get the appropriate information from the data recieved
+    //https://www.dictionaryapi.com/products/json#sec-2.uns
     console.log('items:', items);
+    const  def = items && items[0].shortdef[0];
+    let usage = '';
+    try {
+      //https://bobbyhadz.com/blog/javascript-check-if-array-index-exists#check-if-an-index-exists-in-a-nested-array-using-trycatch
+      if(items[4].def[0].sseq[0][0][1].dt[2][1][0].t !== undefined) usage = items[4].def[0].sseq[0][0][1].dt[2][1][0].t;
+    } catch (error) {
+      usage = 'No usage avalable'
+    }
+
     results = (
       <>
-        <h6>Definition(s)</h6>
-        <ul>
-        {items.map((item, index) => (
-          <li key={index}>
-            {item.shortdef}
-          </li>
-        ))}
-      </ul>
-      <h6>Usage Notes</h6>
-      {/** https://www.dictionaryapi.com/products/json#sec-2.uns */}
-        <ul>
-        {items.map((item, index) => (
-          <li key={index}>
-            {item.uns}
-          </li>
-        ))}
-      </ul>
-      <h6>Usage Discussion</h6>
-      {/** https://www.dictionaryapi.com/products/json#sec-2.usages  */}
-        <ul>
-        {items.map((item, index) => (
-          <li key={index}>
-            {item.usages}
-          </li>
-        ))}
-      </ul>
+        <h6>Definition: <span style={{fontWeight: 'normal'}}>{def}</span></h6>
+        <h6>Usage: <span style={{fontWeight: 'normal'}}>{usage}</span></h6>
       </>
 
     );
