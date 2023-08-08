@@ -1,0 +1,82 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="container my-5"
+>
+  <div
+    className="p-5 text-center bg-body-tertiary rounded-3"
+  >
+    <svg
+      aria-hidden="true"
+      className="svg-inline--fa fa-book fa-6x "
+      data-icon="book"
+      data-prefix="fas"
+      focusable="false"
+      role="img"
+      style={Object {}}
+      viewBox="0 0 448 512"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M96 0C43 0 0 43 0 96V416c0 53 43 96 96 96H384h32c17.7 0 32-14.3 32-32s-14.3-32-32-32V384c17.7 0 32-14.3 32-32V32c0-17.7-14.3-32-32-32H384 96zm0 384H352v64H96c-17.7 0-32-14.3-32-32s14.3-32 32-32zm32-240c0-8.8 7.2-16 16-16H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16zm16 48H336c8.8 0 16 7.2 16 16s-7.2 16-16 16H144c-8.8 0-16-7.2-16-16s7.2-16 16-16z"
+        fill="currentColor"
+        style={Object {}}
+      />
+    </svg>
+    <br />
+    <h1
+      className="text-body-emphasis"
+    >
+      Dictionary
+    </h1>
+    <p
+      className="col-lg-8 mx-auto fs-5 text-muted"
+    >
+      This dictionary application allows you to enter a word and it will show you the definition and the example usage. Go ahead and try it!
+    </p>
+    <div
+      className="bd-example"
+    >
+      <form>
+        <div
+          className="w-50 p-3"
+          style={
+            Object {
+              "marginLeft": "30%",
+            }
+          }
+        >
+          <input
+            aria-describedby="emailHelp"
+            className="form-control d-inline-flex align-items-center"
+            id="userInputWord"
+            placeholder="Type a word here to get the definition"
+            type="text"
+          />
+        </div>
+      </form>
+      <br />
+      <div
+        className="d-inline-flex gap-2 mb-5"
+      >
+        <button
+          className="d-inline-flex align-items-center btn btn-primary btn-lg px-4 rounded-pill"
+          onClick={[Function]}
+          type="button"
+        >
+          Get definition
+        </button>
+      </div>
+      <h4
+        className="text-uppercase"
+      />
+      <span>
+        <div>
+          Enter a word above and click "Get Definition"
+        </div>
+      </span>
+    </div>
+  </div>
+</div>
+`;
