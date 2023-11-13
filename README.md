@@ -19,7 +19,7 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">Git User Details API</h3>
+<h3 align="center">Dictionary</h3>
   <p align="center">
     A React app that will display the definition and example usage of any word typed by the user. This app uses the <a href="https://www.dictionaryapi.com/">Merriam Webster Dictionary API.</a> 
     <br />
