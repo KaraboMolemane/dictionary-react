@@ -99,10 +99,7 @@ Below is a list of things you need to use the project and how to install them.
   * N/A
 
 * Run Front end
-  * Open another instance of the terminal on your project and navigate to the front end by typing
-    ```sh
-     cd frontend
-    ```
+ 
   * Install NPM packages for the front end
     ```sh
      npm install
