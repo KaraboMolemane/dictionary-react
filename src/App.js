@@ -16,6 +16,8 @@ function App() {
   useEffect(() => {
     if(userWord !== ''){
       const apiKey = 'a38b9950-2c3e-446c-94bd-02c7c25cbf22';
+      // const apiKey = process.env.API_KEY;
+      console.log('apiKey', apiKey)
       const apiURL = 'https://www.dictionaryapi.com/api/v3/references/collegiate/json/'.concat(userWord,'?key=',apiKey);
 
       //Do the API call
